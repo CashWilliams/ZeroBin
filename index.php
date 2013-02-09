@@ -3,9 +3,12 @@
 ZeroBin - a zero-knowledge paste bin
 Please see project page: http://sebsauvage.net/wiki/doku.php?id=php:zerobin
 */
-$VERSION='Alpha 0.2';
 if (version_compare(PHP_VERSION, '5.2.6') < 0) die('ZeroBin requires php 5.2.6 or above to work. Sorry.');
-require_once "lib/vizhash_gd_zero.php";
+
+$VERSION='Alpha 0.2';
+
+require_once 'lib/vizhash_gd_zero.php';
+require_once 'lib/Twig/Autoloader.php';
 
 // In case stupid admin has left magic_quotes enabled in php.ini:
 if (get_magic_quotes_gpc())
@@ -337,11 +340,13 @@ if (!empty($_SERVER['QUERY_STRING']))  // Display an existing paste.
 }
 
 
-require_once "lib/rain.tpl.class.php";
+Twig_Autoloader::register();
+$loader = new Twig_Loader_Filesystem('tpl');
+$twig = new Twig_Environment($loader);
+
+$elements['CIPHERDATA'] = htmlspecialchars($CIPHERDATA,ENT_NOQUOTES);
+$elements['VERSION'] = $VERSION;
+$elements['ERRORMESSAGE'] = $ERRORMESSAGE;
+
 header('Content-Type: text/html; charset=utf-8');
-$page = new RainTPL;
-$page->assign('CIPHERDATA',htmlspecialchars($CIPHERDATA,ENT_NOQUOTES));  // We escape it here because ENT_NOQUOTES can't be used in RainTPL templates.
-$page->assign('VERSION',$VERSION);
-$page->assign('ERRORMESSAGE',$ERRORMESSAGE);
-$page->draw('page');
-?>
+echo $twig->render('page.html', $elements);
