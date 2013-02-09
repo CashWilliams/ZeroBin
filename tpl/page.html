@@ -17,7 +17,7 @@
     <link href="bootstrap/css/bootstrap-responsive.min.css#" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="css/jquery.snippet.min.css#" />
-    <link type="text/css" rel="stylesheet" href="css/zerobin.css?{$VERSION|rawurlencode}#" />
+    <link type="text/css" rel="stylesheet" href="css/zerobin.css?{{ VERSION|url_encode(true) }}#" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="#" onclick="window.location.href=scriptLocation();return false;">ZeroBin</a>
-          <p class="navbar-text pull-right">{$VERSION}</p>
+          <p class="navbar-text pull-right">{{ VERSION }}</p>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
           <div class="alert" id="status" style="display:none">&nbsp;</div>
         </div>
         <div class="span12">
-          <div class="alert alert-error" id="errormessage" style="display:none">{$ERRORMESSAGE|htmlspecialchars}</div>
+          <div class="alert alert-error" id="errormessage" style="display:none">{{ ERRORMESSAGE|e }}</div>
         </div>
         <div class="span12">
           <div id="remainingtime" class="alert" style="display:none;"></div>
@@ -125,7 +125,7 @@
           <div id="comments"></div>
         </div>
       </div>
-      <div id="cipherdata" style="display:none;">{$CIPHERDATA}</div>
+      <div id="cipherdata" style="display:none;">{{ CIPHERDATA }}</div>
 
       <footer class="footer">
         <hr />
@@ -134,9 +134,6 @@
       </footer>
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js#"></script>
 
     <script src="bootstrap/js/bootstrap.min.js#"></script>
@@ -147,6 +144,6 @@
     <script src="js/rawinflate.js#"></script>
     <script src="js/jquery.snippet.min.js#"></script>
     <script src="js/sh_diff.min.js#"></script>
-    <script src="js/zerobin.js?{$VERSION|rawurlencode}#"></script>
+    <script src="js/zerobin.js?{{ VERSION|url_encode(true) }}#"></script>
   </body>
 </html>
