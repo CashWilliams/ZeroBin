@@ -147,10 +147,9 @@ function displayMessages(key, comments) {
             if ($(cname).length) {
                 place = $(cname);
             }
-            var divComment = $('<blockquote><div class="comment" id="comment_' + comment.meta.commentid+'">'
-                               + '<div class="commentmeta"><strong class="nickname"></strong><span class="commentdate"></span></div><div class="commentdata"></div>'
-                               + '<button class="btn" onclick="open_reply($(this),\'' + comment.meta.commentid + '\');return false;">Reply</button>'
-                               + '</div></blockquote>');
+            var divComment = $('<div class="row"><div class="span12"><div class="comment" id="comment_' + comment.meta.commentid+'">'
+                               + '<div class="commentmeta"><strong class="nickname"></strong><span class="commentdate muted"></span></div><div class="commentdata"></div>'
+                               + '</div></div></div>');
             setElementText(divComment.find('div.commentdata'), cleartext);
             // Convert URLs to clickable links in comment.
             urls2links(divComment.find('div.commentdata'));
@@ -169,7 +168,7 @@ function displayMessages(key, comments) {
 
             place.append(divComment);
         }
-        $('div#comments').append('<div class="comment"><button class="btn" onclick="open_reply($(this),\'' + pasteID() + '\');return false;">Add comment</button></div>');
+        $('div#comments').append('<div class="comment"><div class="row"><div class="span12"><button class="btn" onclick="open_reply($(this),\'' + pasteID() + '\');return false;">Add comment</button></div></div></div>');
         $('div#discussion').show();
     }
 }
@@ -181,30 +180,21 @@ function displayMessages(key, comments) {
  */
 function open_reply(source, commentid) {
     $('div.reply').remove(); // Remove any other reply area.
-    source.after('<div class="row">'
-                + '<div class="span8 offset2">'
+    source.parent().after('<div class="span12">'
                 + '<div class="reply">'
                 + '<div id="replystatus" class="alert" style="display:none;">&nbsp;</div>'
                 + '<form class="form-horizontal well"><fieldset>'
                 + '<div class="control-group">'
-                + '<label class="control-label" for="nickname">Optional Name</label>'
-                + '<div class="controls">'
-                + '<input type="text" class="input-xlarge" id="nickname" name="nickname"/>'
-                + '</div>'
+                + '<input type="text" placeholder="Your Name" class="input-block-level" id="nickname" name="nickname"/>'
                 + '</div>'
                 + '<div class="control-group">'
-                + '<label class="control-label" for="replymessage">Comment</label>'
-                + '<div class="controls">'
-                + '<textarea id="replymessage" class="replymessage input-xlarge" rows="7"></textarea>'
-                + '</div>'
+                + '<textarea id="replymessage" placeholder="Comment" class="replymessage input-block-level" rows="5"></textarea>'
                 + '</div>'
                 + '<div class="control-group">'
-                + '<div class="controls">'
                 + '<button class="btn btn-primary" id="replybutton" onclick="send_comment(\'' + commentid + '\');return false;">Post comment</button>'
                 + '</div>'
                 + '</div>'
-                + '</div>'
-                + '</fieldset></form></div></div>');
+                + '</fieldset></form></div>');
     $('input#nickname').focus(function() {
         $(this).css('color', '#000');
         if ($(this).val() == $(this).attr('title')) {

@@ -7,15 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.min.css#" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
     <link href="bootstrap/css/bootstrap-responsive.min.css#" rel="stylesheet">
-
     <link type="text/css" rel="stylesheet" href="css/jquery.snippet.min.css#" />
     <link type="text/css" rel="stylesheet" href="css/zerobin.css?{{ VERSION|url_encode(true) }}#" />
 
@@ -23,21 +16,13 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <body>
-
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#" onclick="window.location.href=scriptLocation();return false;">ZeroBin</a>
+          <a class="brand" href="#" onclick="window.location.href=scriptLocation();return false;"><span class="red">Zero</span><span class="white">Bin</span></a>
           <p class="navbar-text pull-right">{{ VERSION }}</p>
         </div>
       </div>
@@ -45,8 +30,10 @@
 
     <noscript><div class="nonworking">Javascript is required for ZeroBin to work.<br>Sorry for the inconvenience.</div></noscript>
 
+
     <div class="container">
 
+      <!-- alert boxes -->
       <div class="row">
         <div class="span12">
           <div class="alert" id="status" style="display:none">&nbsp;</div>
@@ -58,7 +45,9 @@
           <div id="remainingtime" class="alert" style="display:none;"></div>
         </div>
       </div>
+      <!-- end alert boxes -->
 
+      <!-- main content -->
       <div class="row">
         <div id="message" class="span9">
           <textarea id="messageValue" class="span9" rows="20" name="message"></textarea>
@@ -66,7 +55,7 @@
         <div id="toolbar" class="span3">
           <div class="well">
             <label for="pasteExpiration">Expiration:</label>
-            <select class="span2" id="pasteExpiration" name="pasteExpiration">
+            <select class="input-block-level" id="pasteExpiration" name="pasteExpiration">
               <option value="burn">Burn after reading</option>
               <option value="10min">10 minutes</option>
               <option value="1hour">1 hour</option>
@@ -76,7 +65,7 @@
             </select>
 
             <label for="language">Language:</label>
-            <select class="span2" id="language" name="language">
+            <select class="input-block-level" id="language" name="language">
               <option value="none" selected="selected">None</option>
               <option value="c">C</option>
               <option value="cpp">C++</option>
@@ -98,17 +87,17 @@
               <input type="checkbox" id="opendiscussion" name="opendiscussion" />
               Allow Comments
             </label>
-
             <!--
             <input id="password" value="Optional password..." style="display:none;" />
             -->
-            <hr />
-            <button class="btn btn-primary" id="sendbutton" onclick="send_data();return false;"><i class="icon-ok icon-white"></i>Submit</button>
-            <button class="btn btn-danger" id="newbutton" onclick="window.location.href=scriptLocation();return false;"><i class="icon-remove icon-white"></i>Cancel</button>
+            <button class="btn btn-primary" id="sendbutton" onclick="send_data();return false;"><i class="icon-ok icon-white"></i> Submit</button>
+            <button class="btn btn-danger" id="newbutton" onclick="window.location.href=scriptLocation();return false;"><i class="icon-remove icon-white"></i> Cancel</button>
           </div>
         </div>
       </div>
+      <!-- end main content -->
 
+      <!-- paste url -->
       <div class="row">
         <div class="span12">
           <div id="pastelink" class="alert alert-info" style="display:none;"></div>
@@ -117,7 +106,9 @@
           <pre id="cleartext" style="display:none;"></pre>
         </div>
       </div>
+      <!-- end paste url -->
 
+      <!-- comments -->
       <div id="discussion" class="row" style="display:none;">
         <div class="span12">
           <hr />
@@ -126,18 +117,20 @@
         </div>
       </div>
       <div id="cipherdata" style="display:none;">{{ CIPHERDATA }}</div>
+      <!-- end comments -->
 
+      <!-- footer -->
       <footer class="footer">
         <hr />
         <p><strong>Warning</strong> You have accessed a private computer system. This system is for authorized use only and user activities are monitored and recorded by company personnel. Unauthorized access to or use of this system is strictly prohibited and constitutes a violation of federal and state criminal and civil laws, including Title 18, Section 1030 of the United States Code and applicable international laws. Violators will be prosecuted to the fullest extent of the law. By using this system you certify that you have read and understood these terms and that you are authorized to access and use this system.</p>
         <p>This is a fork of ZeroBin. ZeroBin is a minimalist, opensource online pastebin where the server has zero knowledge of pasted data. Data is encrypted/decrypted in the browser using 256 bits AES. More information on the <a href="http://github.com/CashWilliams/ZeroBin">project page</a>.</p>
       </footer>
-    </div> <!-- /container -->
+      <!-- end footer -->
+    </div>
+    <!--  end container -->
 
     <script src="js/jquery.js#"></script>
-
     <script src="bootstrap/js/bootstrap.min.js#"></script>
-
     <script src="js/sjcl.js#"></script>
     <script src="js/base64.js#"></script>
     <script src="js/rawdeflate.js#"></script>
