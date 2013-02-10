@@ -1,12 +1,12 @@
-ZeroBin 0.15 Alpha
-=== THIS IS ALPHA SOFTWARE - USE AT YOUR OWN RISKS ====
+ZeroBin 0.3 Alpha
+
+This is a fork of ZeroBin by Sebastien Sauvage (sebsauvage.net). This
+fork has driffed from the original project and is now based on the
+Twig template engine and Twitter Bootstrap.
 
 ZeroBin is a minimalist, opensource online pastebin where the server 
 has zero knowledge of pasted data. Data is encrypted/decrypted in the 
 browser using 256 bits AES. 
-
-More information on the project page:
-http://sebsauvage.net/wiki/doku.php?id=php:zerobin
 
 ------------------------------------------------------------------------------
 
