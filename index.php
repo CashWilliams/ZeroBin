@@ -349,4 +349,8 @@ $elements['VERSION'] = $VERSION;
 $elements['ERRORMESSAGE'] = $ERRORMESSAGE;
 
 header('Content-Type: text/html; charset=utf-8');
+header('Expires: Sun, 2 Oct 1983 05:00:00 GMT');
+header('Last-Modified: ' . gmdate(DATE_RFC1123, time()));
+header('Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0');
+header('ETag: "' . time() . '"');
 echo $twig->render('page.html', $elements);
