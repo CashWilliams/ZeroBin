@@ -1,4 +1,4 @@
-ZeroBin 0.3 Alpha
+ZeroBin 0.3.1 Alpha
 
 This is a fork of ZeroBin by Sebastien Sauvage (sebsauvage.net). This
 fork has driffed from the original project and is now based on the
